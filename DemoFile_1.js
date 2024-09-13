@@ -54,6 +54,7 @@ describe("Go to Learning Page", () => {
   // Potential issue 4: Magic string
   it("create a Campaign with missing mandatory field", async () => {
     await EmailCampaign.clickOnCreateCampaign();
+    await new Promise(resolve => setTimeout(resolve, 3000));
     await EmailCampaign.enterTitle("title"); // Magic string: use a variable instead
     expect(await EmailCampaign.designYourEmailenabled()).to.equal(false);
     await EmailCampaign.clearTitle();
