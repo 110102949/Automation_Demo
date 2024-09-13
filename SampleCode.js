@@ -35,6 +35,17 @@ describe("Login Automation Suite", () => {
         expect(errorMessage).toContain("Your username is invalid!");
     });
 
+
+    it("should fail login with invalid credentials", async () => {
+        await $("#username").setValue(USERS.invalidUser.username);  // Duplicate  login code 
+        await $("#password").setValue(USERS.invalidUser.password);
+        await $("button[type='submit']").click();
+        
+        // Check the error message
+        const errorMessage = await $(".flash.error").getText();
+        expect(errorMessage).toContain("Your username is invalid!");
+    });
+
     afterEach(async () => {
         await browser.reloadSession();  // Redundant operation, might not be necessary after each test
     });
